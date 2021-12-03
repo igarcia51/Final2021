@@ -201,3 +201,149 @@ basicCC + geom_bar(stat="identity", position = "dodge")
 ```
 
 This plot represents the population of (Druguser)  and the relationship to the contraction of covid-19 by either talking the vaccine or the placebo. 
+
+The plot above shows that only 33% of the girls that took the vaccine did in fact get covid-19, while only approximately 67% of (Drugusers)taking the placebo contracted covid-19.  A substantially lower percentage of people who took the vaccine contracted covid-19 versus those who were only given the placebo. The vaccine appears to be ineffective in protection against covid-19. The odds of getting covid-19 while taking the vaccine is 3:2. The men that took the drug were half as likely to get covid-19 than those taking the placebo.
+
+
+There are two plots. In first plot,the x-axis represents infected, whether the participants were infected with covid-19 or they were not. The y-axis represents the count, or number of people that got covid-19 or not.
+In was the second plot, the one above, The The left two bars of the graph are all Drugusers that got covid-19. The x-axis represents whether a  person got covid-19 or not. The y-axis, however, instead of representing the number of people who got covid-19, now represents the percentage of Drug users that got covid-19 after taking the the placebo or taking the Vaccine. 
+
+
+The codes that  create this plot start with the code block beginning with dd2. dd2 can be seen in the environment pane and if inspected contains 4 variables.These variables include infected, treatment, count, and prcent(stands for percent). The second group of codes is called the basicC. BasicC can also be seen in the environment pane and appears to contain a list of 9 variables. This information creates the first plot. The basicCC is the last bunch of codes and is also in the files pane. It also contains 9 variables and helps to create the percentage plot, the second plot.
+
+### Numerical results
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=Druguser)
+rowPerc(table1)
+colPerc(table1)
+```
+These numerical results show specific percentages of Drugusers that got covid-19 after taking the placebo and taking the vaccine. Among the Drugusers, 33% got covid-19 after taking the vaccine, while the approximately 67% of drugusers that were given the placebo contracted covid-19. The vaccine is clearly effective in preventing covid-19 in drugusers and it is  recommended. Those who took the placebo were much more likely to contact covid-19
+The odds of getting covid-19  for a druguser while taking the vaccine is 1:2. The drugusers that took the drug were half as likely to get covid-19 (33%) than those taking the placebo(67%).
+
+## inferential Results
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+Druguserfish <- fisher.test(table1)
+Druguserfish
+```
+
+The information to play close attention to among all of these results is the output of the Fisher's Exact test. The p-value displayed above is extremely small at .002. This is an awfully small number. seeing this number means that these results are not likely to occur by chance.
+
+
+
+The null hypothesis predicted that the  covid-19 vaccine effectiveness is independent of subgroup. Since it is clear that subgroup does play a role in the rate of infection  in the vaccinated individuals, the alternative hypothesis, that there is a correlation between covid-19 vaccination effectiveness and subgroups, is the favorable option.
+
+The odd ratio above illustrates a ratio of 1.8. the Drugusers who received tha vaccine were half as likely to get covid-19 than those who received the placebo. 
+
+```{r}
+effect <- Druguserfish$p.value/(Druguserfish$p.value +1)
+effectivenessDruguser = Druguserfish$estimate/(Druguserfish$estimate +1)*100
+print(effectivenessDruguser)
+```
+
+
+
+```{r}
+low=(Druguserfish$conf.int[1]/(Druguserfish$conf.int[1] +1))*100
+hi=(Druguserfish$conf.int[2]/(Druguserfish$conf.int[2] +1))*100
+options(digits=2)
+```
+
+Above is the effectiveness for the covid-19 vaccine for (Drugusers). If the effectiveness is above 50% that means that the vaccine is effective. Based on the interval seen above, we can conclude that the vaccine is effective in protecting Drugusers from getting covid-19. 
+
+The odds ratio is approximately how effective the vaccine is. The odds ratio for the drugusers can be seen above as 65. The effectiveness confidence interval for the Drugusers is 55.09 to 75.05.
+
+
+# LGBTQ
+
+```{r}
+dd2 <- gay %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
+
+
+# the group_by followed by summarize(count=n())
+
+basicC <- ggplot(dd2,aes(x=infected,y=count,fill=treatment))
+basicC + geom_bar(stat="identity",position="dodge")
+
+#Now for percentage plot
+
+basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
+
+This plot represents the population of (LGBTQ)  and the relationship to the contraction of covid-19 by either talking the vaccine or the placebo. 
+
+
+The plot above shows that only 33% of the LGBTQ that took the vaccine did in fact get covid-19, while only approximately 67% of ( LGBTQ)taking the placebo contracted covid-19.  A substantially lower percentage of people who took the vaccine contracted covid-19 versus those who were only given the placebo. The vaccine appears to be effective in protection against covid-19. The odds of getting covid-19 while taking the vaccine is 1:3. The LGBTQ that took the drug were half as likely to get covid-19 than those taking the placebo.
+
+
+There are two plots. In first plot,the x-axis represents infected, whether the participants were infected with covid-19 or they were not. The y-axis represents the count, or number of people that got covid-19 or not.
+In was the second plot, the one above, The The left two bars of the graph are all  LGBTQ that got covid-19. The x-axis represents whether a  person got covid-19 or not. The y-axis, however, instead of representing the number of persons who got covid-19, now represents the percentage of  LGBTQ that got covid-19 after taking the the placebo or taking the Vaccine. 
+
+
+The codes that  create this plot start with the code block beginning with dd2. dd2 can be seen in the environment pane and if inspected contains 4 variables.These variables include infected, treatment, count, and prcent(stands for percent). The second group of codes is called the basicC. BasicC can also be seen in the environment pane and appears to contain a list of 9 variables. This information creates the first plot. The basicCC is the last bunch of codes and is also in the files pane. It also contains 9 variables and helps to create the percentage plot, the second plot.
+
+### Numerical results
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=gay)
+rowPerc(table1)
+colPerc(table1)
+```
+These numerical results show specific percentages of  LGBTQ that got covid-19 after taking the placebo and taking the vaccine. Among the  LGBTQ, 71% got covid-19 after taking the vaccine, while  approximately 29% of  LGBTQ that were given the placebo contracted covid-19. The vaccine is clearly ineffective in preventing covid-19 in  LGBTQ and it is not recommended for them. Those who took the placebo were much more likely to contact covid-19
+The odds of getting covid-19  while taking the vaccine is 3:1. The  LGBTQ that took the drug were much more likely to get covid-19 (71%) than those taking the placebo(29%).
+
+## inferential Results
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+gayfish <- fisher.test(table1)
+gayfish
+```
+
+The information to play close attention to among all of these results is the output of the Fisher's Exact test. The p-value displayed above is extremely small at .00006. This is an awfully small number, This number means that these results are not likely to occur by chance.
+
+
+
+The null hypothesis predicted that the  covid-19 vaccine effectiveness is independent of subgroup. Since it is clear that subgroup does play a role in the rate of infection  in individuals that were vaccinated, the alternative hypothesis, that there is a correlation between covid-19 infection rate in those vaccinated  and subgroups, is the favorable option.
+
+The odd ratio above illustrates a ratio of 0.4. the  LGBTQ who received tha vaccine were as likely to get covid-19 than those who received the placebo. 
+
+```{r}
+effect <- gayfish$p.value/(gayfish$p.value +1)
+effectivenessgay = gayfish$estimate/(gayfish$estimate +1)*100
+print(effectivenessgay)
+```
+
+
+
+```{r}
+low=(gayfish$conf.int[1]/(gayfish$conf.int[1] +1))*100
+hi=(gayfish$conf.int[2]/(gayfish$conf.int[2] +1))*100
+options(digits=2)
+```
+
+Above is the effectiveness for the covid-19 vaccine for (LGBTQ). If the effectiveness is above 50% that means that the vaccine is effective. Based on the interval seen above, we can conclude that the vaccine is ineffective in protecting (LGBTQ) from getting covid-19. 
+
+The odds ratio is approximately how effective the vaccine is. The odds ratio for the drugusers can be seen above as 29. The effectiveness confidence interval for the(LGBTQ) is 24, 45, to 36.56.
+
+# Conclusions and recommendations
+
+We reject the null hypothesis because there is a difference in covid 19 vaccine effectiveness among different subgroups(males, females, Drugusers, and LGBTQ). Vaccine effectiveness varies between subgroups and each subgroup had a difference P value, thus different rate of effectiveness in all subgroups qfter receiving the vaccine.
+
+Males vaccinated had 2:1 of contracting covid 19 after being vaccinated, thus it is ineffective for males with a P value of 0.0005801which is too low. This indicates strong evidence against the null hypothesis, so we reject the null hypothesis. In conclusion males should not take the vaccine because it is ineffective at protecting males from covid 19.
+
+Females were 1:2 odds of contracting covid 19 after vaccination,  with a P value of  <2e-16(0.0000000000000002)which is too low. This indicates strong evidence against the null hypothesis, so we reject the null hypothesis. In conclusion woman take the vaccine because it is effective in protecting woman from covid 19.
+
+
+Drugusers had 2:1 of contracting covid 19 after vaccination with a P value of 0.002 which is too low. This indicates strong evidence against the null hypothesis, so we reject the null hypothesis. In conclusion Drugusers should  take the vaccine because it is effective at protecting them from covid 19.
+
+
+LGBTQ,had a 5:3 odds of contracting covid 19.After vaccination with a P value of 0.00006 which is too low. This indicates strong evidence against the null hypothesis, so we reject the null hypothesis. In conclusion LGBTQ should not take the vaccine because it is ineffective at protecting them from covid 19.
+
+To reiterate it is is clear that there is difference in Covid 19 vaccine effectiveness between different subgroups, thus we reject the null hypothesis. The vaccine is effective at fighting Covid 19 for woman and drug users but ineffective for for men and LGBTQ.
+
