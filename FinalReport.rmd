@@ -333,7 +333,7 @@ The odds ratio is approximately how effective the vaccine is. The odds ratio for
 
 # Conclusions and recommendations
 
-We reject the null hypothesis because there is a difference in covid 19 vaccine effectiveness among different subgroups(males, females, Drugusers, and LGBTQ). Vaccine effectiveness varies between subgroups and each subgroup had a difference P value, thus different rate of effectiveness in all subgroups qfter receiving the vaccine.
+We reject the null hypothesis because there is a difference in covid 19 vaccine effectiveness among different subgroups(males, females, Drug users, and LGBTQ). Vaccine effectiveness varies between subgroups and each subgroup had a difference P value, thus different rate of effectiveness in all subgroups after receiving the vaccine.
 
 Males vaccinated had 2:1 of contracting covid 19 after being vaccinated, thus it is ineffective for males with a P value of 0.0005801which is too low. This indicates strong evidence against the null hypothesis, so we reject the null hypothesis. In conclusion males should not take the vaccine because it is ineffective at protecting males from covid 19.
 
@@ -342,8 +342,6 @@ Females were 1:2 odds of contracting covid 19 after vaccination,  with a P value
 
 Drugusers had 2:1 of contracting covid 19 after vaccination with a P value of 0.002 which is too low. This indicates strong evidence against the null hypothesis, so we reject the null hypothesis. In conclusion Drugusers should  take the vaccine because it is effective at protecting them from covid 19.
 
-
 LGBTQ,had a 5:3 odds of contracting covid 19.After vaccination with a P value of 0.00006 which is too low. This indicates strong evidence against the null hypothesis, so we reject the null hypothesis. In conclusion LGBTQ should not take the vaccine because it is ineffective at protecting them from covid 19.
 
 To reiterate it is is clear that there is difference in Covid 19 vaccine effectiveness between different subgroups, thus we reject the null hypothesis. The vaccine is effective at fighting Covid 19 for woman and drug users but ineffective for for men and LGBTQ.
-
